@@ -1,5 +1,5 @@
 /*!
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2018 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 'use strict';
 
-var common = require('@google-cloud/common');
-var util = require('util');
+const common = require('@google-cloud/common');
+const util = require('util');
 
 /**
  * @class
@@ -30,13 +30,13 @@ var util = require('util');
  * const instanceTemplate = compute.instanceTemplate('my-instance-template');
  */
 function InstanceTemplate(compute, name) {
-  var methods = {
+  const methods = {
     /**
      * Create an instance template.
      *
      * @method InstanceTemplate#create
      * @param {object=} options - See an
-     *     [InstanceTemplate resource](https://cloud.google.com/compute/docs/reference/v1/instanceTemplate#resource).
+     *     [Instance Template resource](https://cloud.google.com/compute/docs/reference/rest/v1/instanceTemplates#resource)
      *
      * @example
      * const Compute = require('@google-cloud/compute');
@@ -210,7 +210,7 @@ util.inherits(InstanceTemplate, common.ServiceObject);
  * });
  */
 InstanceTemplate.prototype.delete = function(callback) {
-  var self = this;
+  const self = this;
 
   callback = callback || common.util.noop;
 
@@ -220,7 +220,7 @@ InstanceTemplate.prototype.delete = function(callback) {
       return;
     }
 
-    var operation = self.compute.operation(resp.name);
+    const operation = self.compute.operation(resp.name);
     operation.metadata = resp;
 
     callback(null, operation, resp);
